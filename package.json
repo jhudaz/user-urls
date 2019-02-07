@@ -18,9 +18,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "test": "yarn build && run-p --race start cypress:run",
+    "serve:build": "NODE_ENV=test serve -s build -p 3000"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,6 +35,11 @@
   ],
   "devDependencies": {
     "cypress": "^3.1.5",
-    "redux-devtools": "^3.5.0"
+    "redux-devtools": "^3.5.0",
+    "serve": "^10.1.2",
+    "npm-run-all": "^4.1.5"
+  },
+  "resolutions": {
+    "terser": "3.14.1"
   }
 }

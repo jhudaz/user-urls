@@ -4,8 +4,6 @@ node_js:
 
 before_script:
   - npm install
-  
-  
+
 script:
-  - npm start
-  - npm run cypress:open
+  - npm test
