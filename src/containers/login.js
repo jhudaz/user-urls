@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router';
 import { message } from 'antd';
+import Auth from '../services/Auth';
 
 
 import { loginApi, clearMessage } from '../actions';
 import { connect } from 'react-redux';
 
 import '../App.scss';
+
+const auth = new Auth();
 
 class Login extends Component {
   constructor(props) {
@@ -18,14 +21,17 @@ class Login extends Component {
       token: 0
     }
     this.login = this.login.bind(this);
+    this.loginAuth = this.loginAuth.bind(this);
   }
 
   componentDidUpdate() {
     if (this.props.loginReducer.success) {
       this.props.history.push('/user-urls')
     }
-
-
+  }
+  loginAuth(e){
+    e.preventDefault();
+    auth.login();
   }
   login(e) {
     e.preventDefault();
@@ -58,6 +64,11 @@ class Login extends Component {
                 className="green"
                 disabled={this.state.email.length === 0 || this.state.pass.length === 0}
                 onClick={this.login}>Sign In</button>
+            </li>
+            <li>
+              <button
+                className="green"
+                onClick={this.loginAuth}>Auth0</button>
             </li>
           </ul>
         </div>
